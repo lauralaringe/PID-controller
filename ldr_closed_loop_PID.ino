@@ -24,7 +24,7 @@ unsigned long Time = 0, Time_ant = 0;
 unsigned long num_aux = 0;
 
 // Configuration of the PID Variables that we will change so as to control the plant. And construction of the PID object.
-// ------------- WRITE HERE THE CODE--------------------------------- //
+
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 // Configuration of the PID Variables that we will change so as to control the plant. 
@@ -32,9 +32,10 @@ void NewConfigParameter()
 {
   if (Serial.available() > 0)
   {
-    // Meter la lectura en un String
+    // Put the reading on string
     cadena = Serial.readString();
-    // Si el inicio del string es un número, se convierte en float dentro de la variable number
+    // If the beginning of the string is a number it transforms it into a float on the number variable
+    // 
     number = cadena.toFloat();
     Setpoint = number;
   }
@@ -101,7 +102,7 @@ void loop()
             num_aux = 0;
         }
     }
-    // Ohterwisw, print only when the PID has been executed.
+    // Ohterwise, print only when the PID has been executed.
     else 
     {
         if (PID_executed == true) 
